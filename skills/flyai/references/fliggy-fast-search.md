@@ -21,11 +21,11 @@
 ### 调用示例
 
 ```bash
-node scripts/flyai.cjs fliggy-fast-search --query "法国签证"
-node scripts/flyai.cjs fliggy-fast-search --query "杭州跟团游"
-node scripts/flyai.cjs fliggy-fast-search --query "杭州三日游"
-node scripts/flyai.cjs fliggy-fast-search --query "邮轮上海"
-node scripts/flyai.cjs fliggy-fast-search --query "香港电话卡"
+flyai fliggy-fast-search --query "法国签证"
+flyai fliggy-fast-search --query "杭州跟团游"
+flyai fliggy-fast-search --query "杭州三日游"
+flyai fliggy-fast-search --query "邮轮上海"
+flyai fliggy-fast-search --query "香港电话卡"
 ```
 
 ### 输出示例

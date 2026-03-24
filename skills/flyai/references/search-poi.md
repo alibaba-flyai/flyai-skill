@@ -16,9 +16,9 @@
 ### 调用示例
 
 ```bash
-node scripts/flyai.cjs search-poi --city-name "杭州" --keyword "西湖" --category "山湖田园"
-node scripts/flyai.cjs search-poi --city-name "北京" --poi-level 5
-node scripts/flyai.cjs search-poi --city-name "西安" --category "历史古迹"
+flyai search-poi --city-name "杭州" --keyword "西湖" --category "山湖田园"
+flyai search-poi --city-name "北京" --poi-level 5
+flyai search-poi --city-name "西安" --category "历史古迹"
 ```
 
 ### 输出示例

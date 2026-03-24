@@ -37,21 +37,12 @@ metadata:
 Use `flyai-cli` to call Fliggy MCP services for travel search and booking scenarios.  
 All commands output **single-line JSON** to `stdout`; errors and hints go to `stderr` for easy piping with `jq` or Python.
 
-## Environment
-
-### Optional variables
-
-- **`FLYAI_APP_KEY`**: Fliggy API authentication token. Set this to use your own key; if unset, the CLI uses the default from the bundled profile.
-
-### Credentials
-
-For an official key, register at [open.fly.ai](https://open.fly.ai/).
-
 ## Quick Start
 
-1. **Verify setup**: run `node scripts/flyai.cjs fliggy-fast-search --query "what to do in Sanya"` and confirm JSON output.
-2. **List commands**: run `node scripts/flyai.cjs --help`.
-3. **Read command details**: see **`references/`** for required/optional args and field definitions (paths below).
+1. **Install CLI**：`npm i -g @fly-ai/flyai-cli`
+2. **Verify setup**: run `flyai fliggy-fast-search --query "what to do in Sanya"` and confirm JSON output.
+3. **List commands**: run `flyai --help`.
+4. **Read command details**: see **`references/`** for required/optional args and field definitions (paths below).
 
 ## Core Capabilities
 

@@ -22,8 +22,8 @@
 ### 调用示例
 
 ```bash
-node scripts/flyai.cjs search-hotels --dest-name "杭州" --poi-name "西湖" --check-in-date 2026-03-10 --check-out-date 2026-03-12
-node scripts/flyai.cjs search-hotels --dest-name "三亚" --hotel-stars "4,5" --sort rate_desc --max-price 800
+flyai search-hotels --dest-name "杭州" --poi-name "西湖" --check-in-date 2026-03-10 --check-out-date 2026-03-12
+flyai search-hotels --dest-name "三亚" --hotel-stars "4,5" --sort rate_desc --max-price 800
 ```
 
 ### 输出示例
