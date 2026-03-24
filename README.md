@@ -28,16 +28,21 @@ You're deep in a conversation with your AI coding agent — planning a trip, res
 
 ## Quick Start
 
-### Install
+### Install Skills
 
 Pick your preferred method:
 
 ```bash
-# via clawhub
+# via clawhub (Recommend)
 clawhub install flyai
 
 # or via npx
 npx skills add alibaba-flyai/flyai-skill
+```
+
+### Instal Cli
+```bash
+npm i -g @fly-ai/flyai-cli
 ```
 
 ### Verify
