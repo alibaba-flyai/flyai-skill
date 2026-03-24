@@ -1,0 +1,31 @@
+{
+  "name": "@fly-ai/flyai-skill",
+  "version": "1.1.0",
+  "description": "FlyAI Skill - 飞猪旅行助手，提供酒店预订、机票查询、景点推荐等一站式旅行服务",
+  "bin": {
+    "flyai": "./bin/flyai.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0",
+    "build": "echo \"No build step required\" && exit 0"
+  },
+  "keywords": [
+    "flyai",
+    "fliggy",
+    "travel",
+    "hotel",
+    "flight",
+    "mcp",
+    "skill"
+  ],
+  "author": "Alibaba Fliggy Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba-flyai/flyai-skill.git"
+  },
+  "homepage": "https://open.fly.ai/",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

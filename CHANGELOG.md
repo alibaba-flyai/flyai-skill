@@ -27,7 +27,7 @@
 
 ---
 
-## [1.0.10] - 2026-03-24
+## [1.0.10] - Previous Release
 
 ### Features
 - 支持自然语言旅行搜索 (fliggy-fast-search)
