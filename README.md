@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">✈️ FlyAI Skill</h1>
   <p align="center">
-    <strong>Travel search, powered by Fliggy — right inside Claude Code.</strong>
+    <strong>Travel search, powered by Fliggy — right inside Claude Code, OpenClaw, and other skill-compatible agents.</strong>
   </p>
   <p align="center">
     Search flights, hotels, attractions, concerts, and more with natural language.<br/>
@@ -19,7 +19,7 @@
 
 ## Why FlyAI?
 
-You're deep in a conversation with Claude — planning a trip, researching venues, comparing options. FlyAI lets you **search real-time travel inventory without leaving your terminal**. It connects Claude Code to [Fliggy](https://www.fliggy.com/)'s massive travel platform (part of Alibaba Group), giving you structured, bookable results in seconds.
+You're deep in a conversation with your AI coding agent — planning a trip, researching venues, comparing options. FlyAI lets you **search real-time travel inventory without leaving your terminal**. It connects [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenClaw](https://github.com/nicepkg/openclaw), and other skill-compatible agents to [Fliggy](https://www.fliggy.com/)'s massive travel platform (part of Alibaba Group), giving you structured, bookable results in seconds.
 
 - **Natural language in, structured data out** — ask in plain English or Chinese, get JSON you can pipe, filter, or render
 - **Four specialized search commands** — broad discovery or deep comparison, your call
@@ -178,7 +178,7 @@ flyai search-poi --city-name "Hangzhou" --keyword "West Lake" --category "山湖
 
 ## Examples
 
-Here's what you can ask Claude with FlyAI installed:
+Here's what you can ask your agent with FlyAI installed:
 
 > "Find me direct flights from Beijing to Shanghai next Friday under ¥600"
 
@@ -193,15 +193,15 @@ Here's what you can ask Claude with FlyAI installed:
 ## How It Works
 
 ```
-You ask Claude ──→ FlyAI Skill activates ──→ flyai-cli runs ──→ Fliggy MCP API
-                                                                      │
-You see rich results ←── Claude formats markdown ←── JSON response ←──┘
+You ask your agent ──→ FlyAI Skill activates ──→ flyai-cli runs ──→ Fliggy MCP API
+                                                                         │
+You see rich results ←── Agent formats markdown ←── JSON response ←──────┘
 ```
 
 - **Runtime**: Node.js
 - **Output**: Single-line JSON to `stdout`, errors/hints to `stderr`
 - **Context isolation**: Each command runs in its own execution context
-- **Pattern matching**: Intent-based activation at priority 90 — Claude automatically routes travel queries to FlyAI
+- **Pattern matching**: Intent-based activation at priority 90 — the agent automatically routes travel queries to FlyAI
 
 ## Travel Scenarios Covered
 
