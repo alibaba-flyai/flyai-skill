@@ -40,7 +40,8 @@ clawhub install flyai
 npx skills add alibaba-flyai/flyai-skill
 ```
 
-### Instal Cli
+### Install CLI
+
 ```bash
 npm i -g @fly-ai/flyai-cli
 ```
