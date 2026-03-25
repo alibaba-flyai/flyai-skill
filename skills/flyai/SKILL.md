@@ -42,7 +42,7 @@ All commands output **single-line JSON** to `stdout`; errors and hints go to `st
 1. **Install CLI**：`npm i -g @fly-ai/flyai-cli`
 2. **Verify setup**: run `flyai fliggy-fast-search --query "what to do in Sanya"` and confirm JSON output.
 3. **List commands**: run `flyai --help`.
-4. **Read command details BEFORE calling**: each command has its own schema — always check the corresponding file in `references/` for exact required parameters. Do NOT guess or reuse formats from other commands.
+4. **Read command details BEFORE calling**: each command has its own schema — always check the corresponding file in `references/` before invoking any command. Do NOT guess or reuse formats from other commands.
 
 ## Configuration
 The tool can make trial without any API keys. For enhanced results, configure optional APIs:
