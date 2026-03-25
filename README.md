@@ -28,25 +28,27 @@ You're deep in a conversation with your AI coding agent — planning a trip, res
 
 ## Quick Start
 
-### Install Skills
+### Step 1 — Install the Skill
 
-Pick your preferred method:
+**OpenClaw:**
 
 ```bash
-# via clawhub (Recommend)
 clawhub install flyai
-
-# or via npx
-npx skills add alibaba-flyai/flyai-skill
 ```
 
-### Install CLI
+**Claude Code:**
+
+```bash
+claude install alibaba-flyai/flyai-skill
+```
+
+### Step 2 — Install the CLI
 
 ```bash
 npm i -g @fly-ai/flyai-cli
 ```
 
-### Verify
+### Step 3 — Verify
 
 ```bash
 flyai fliggy-fast-search --query "things to do in Tokyo"
@@ -54,7 +56,7 @@ flyai fliggy-fast-search --query "things to do in Tokyo"
 
 You should see structured JSON output. You're good to go.
 
-### Configure (optional)
+### Step 4 — Configure (optional)
 
 The skill works without any API keys. For enhanced results, set one up:
 
@@ -77,15 +79,39 @@ FlyAI provides four commands, each tailored to a different search pattern:
 
 One query, all categories. Hotels, flights, tickets, tours, cruises, visas, SIM cards — it searches everything.
 
+**OpenClaw:**
+
+```
+/flyai fliggy-fast-search --query "Hangzhou 3-day trip"
+/flyai fliggy-fast-search --query "France visa"
+/flyai fliggy-fast-search --query "Shanghai cruise"
+```
+
+**Claude Code:**
+
+```
+/flyai fliggy-fast-search --query "Hangzhou 3-day trip"
+/flyai fliggy-fast-search --query "France visa"
+/flyai fliggy-fast-search --query "Shanghai cruise"
+```
+
+**CLI:**
+
 ```bash
 flyai fliggy-fast-search --query "Hangzhou 3-day trip"
-flyai fliggy-fast-search --query "France visa"
-flyai fliggy-fast-search --query "Shanghai cruise"
 ```
 
 ### `search-flight` — Flight Comparison
 
 Structured flight search with sorting, cabin class, price caps, and time filters.
+
+**OpenClaw / Claude Code:**
+
+```
+/flyai search-flight --origin "Beijing" --destination "Shanghai" --dep-date 2026-04-15
+```
+
+**CLI:**
 
 ```bash
 # Basic one-way search
@@ -125,6 +151,14 @@ flyai search-flight \
 
 Search by destination with filters for star rating, bed type, price range, and nearby POIs.
 
+**OpenClaw / Claude Code:**
+
+```
+/flyai search-hotels --dest-name "Hangzhou" --poi-name "West Lake" --check-in-date 2026-04-10 --check-out-date 2026-04-12
+```
+
+**CLI:**
+
 ```bash
 # Hotels near West Lake, Hangzhou
 flyai search-hotels \
@@ -159,6 +193,14 @@ flyai search-hotels \
 
 Find attractions by city, category, or level — from AAAAA scenic spots to local surf schools.
 
+**OpenClaw / Claude Code:**
+
+```
+/flyai search-poi --city-name "Xi'an" --category "历史古迹"
+```
+
+**CLI:**
+
 ```bash
 # Historical sites in Xi'an
 flyai search-poi --city-name "Xi'an" --category "历史古迹"
@@ -184,17 +226,34 @@ flyai search-poi --city-name "Hangzhou" --keyword "West Lake" --category "山湖
 
 ## Examples
 
-Here's what you can ask your agent with FlyAI installed:
+### OpenClaw
 
-> "Find me direct flights from Beijing to Shanghai next Friday under ¥600"
+Just type naturally in OpenClaw — FlyAI activates automatically on travel queries:
 
-> "Compare 5-star hotels near the Bund in Shanghai for this weekend"
+> Find me direct flights from Beijing to Shanghai next Friday under ¥600
 
-> "What are the top attractions in Chengdu? I'm interested in nature and history"
+> Compare 5-star hotels near the Bund in Shanghai for this weekend
 
-> "I'm planning a 5-day trip to Japan — search for visa info, flights from Shanghai, and hotels in Tokyo"
+> What are the top attractions in Chengdu? I'm interested in nature and history
 
-> "Find concerts and live events happening in Hangzhou"
+Or use the slash command directly:
+
+```
+/flyai search-flight --origin "Beijing" --destination "Shanghai" --dep-date 2026-04-25 --max-price 600
+```
+
+### Claude Code
+
+Ask naturally or use the `/flyai` slash command inside Claude Code:
+
+> I'm planning a 5-day trip to Japan — search for visa info, flights from Shanghai, and hotels in Tokyo
+
+> Find concerts and live events happening in Hangzhou
+
+```
+/flyai fliggy-fast-search --query "5-day Japan trip from Shanghai"
+/flyai search-hotels --dest-name "Tokyo" --check-in-date 2026-05-01 --check-out-date 2026-05-06
+```
 
 ## How It Works
 
