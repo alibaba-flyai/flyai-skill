@@ -38,8 +38,11 @@ clawhub install flyai
 
 **Claude Code:**
 
-```bash
-claude install alibaba-flyai/flyai-skill
+Run the following commands inside Claude Code:
+
+```
+/plugin marketplace add alibaba-flyai/flyai-skill
+/plugin install flyai@alibaba-flyai-flyai-skill
 ```
 
 ### Step 2 — Install the CLI
