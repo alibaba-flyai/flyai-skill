@@ -33,7 +33,11 @@ You're deep in a conversation with your AI coding agent — planning a trip, res
 **OpenClaw:**
 
 ```bash
+# via clawhub (Recommended)
 clawhub install flyai
+
+# or via npx
+npx skills add alibaba-flyai/flyai-skill
 ```
 
 **Claude Code:**
