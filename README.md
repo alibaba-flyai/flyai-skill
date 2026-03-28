@@ -42,17 +42,8 @@ npx skills add alibaba-flyai/flyai-skill
 
 **Claude Code:**
 
-Run the following commands inside Claude Code:
-
-```
-/plugin marketplace add alibaba-flyai/flyai-skill
-/plugin install flyai-travel-search@alibaba-flyai-flyai-skill
-```
-
-Or copy the skill directory directly:
-
 ```bash
-cp -r /path/to/flyai-skill ~/.claude/skills/flyai
+cp -r /path/to/flyai-skill/skills/flyai ~/.claude/skills/flyai
 ```
 
 ### Step 2 — Install the CLI
