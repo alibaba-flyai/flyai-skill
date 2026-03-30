@@ -6,10 +6,10 @@
 
 - **--origin** (必填): 出发地城市或机场
 - **--destination** (可选): 目的地城市或机场
-- **--dep-date** (可选): 明确出发日期
-- **--dep-date-start** / **--dep-date-end** (可选): 出发日期范围
-- **--back-date** (可选): 明确返程日期
-- **--back-date-start** / **--back-date-end** (可选): 返程日期范围
+- **--dep-date** (可选): 明确出发日期（精确某一天，如 2026-03-15）
+- **--dep-date-start** / **--dep-date-end** (可选): 出发日期范围（如 2026-03-15 到 2026-03-20）
+- **--back-date** (可选): 明确返程日期（精确某一天，如 2026-03-20）
+- **--back-date-start** / **--back-date-end** (可选): 返程日期范围（如 2026-03-20 到 2026-03-25）
 - **--journey-type** (可选): 行程类型
   - 取值：`1` = 直达，`2` = 中转
 - **--seat-class-name** (可选): 舱位名称
@@ -35,8 +35,8 @@
 flyai search-flight --origin "北京" --destination "上海" --dep-date 2026-03-15
 flyai search-flight --origin "上海" --destination "东京" --dep-date 2026-03-20 --back-date 2026-03-25 --journey-type 1
 flyai search-flight --origin "北京" --destination "上海" --dep-date 2026-03-15 --sort-type 3
-flyai search-flight --origin "北京" --destination "上海" --dep-date-start 2026-05-01 --dep-date-end 2026-05-05
-flyai search-flight --origin "北京" --destination "上海" --dep-date-start 2026-05-01 --dep-date-end 2026-05-03 --back-date-start 2026-05-05 --back-date-end 2026-05-08
+flyai search-flight --origin "北京" --destination "上海" --dep-date-start 2026-03-15 --dep-date-end 2026-03-20
+flyai search-flight --origin "北京" --destination "上海" --dep-date-start 2026-03-15 --dep-date-end 2026-03-20 --back-date-start 2026-03-20 --back-date-end 2026-03-25
 ```
 
 ### 输出示例
