@@ -4,7 +4,7 @@
     "name": "alibaba-flyai"
   },
   "metadata": {
-    "description": "Official marketplace for FlyAI — travel search powered by Fliggy"
+    "description": "Official marketplace for FlyAI — Travel, Flight & Hotel Search and Booking powered by Fliggy"
   },
   "plugins": [
     {
@@ -14,7 +14,7 @@
         "source": "url",
         "url": "https://github.com/alibaba-flyai/flyai-skill.git"
       },
-      "version": "1.0.10",
+      "version": "1.0.11",
       "author": {
         "name": "alibaba-flyai"
       }

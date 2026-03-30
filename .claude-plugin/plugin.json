@@ -1,7 +1,7 @@
 {
   "name": "flyai",
   "description": "Travel search powered by Fliggy — search flights, hotels, attractions, concerts, and more with natural language",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "author": {
     "name": "alibaba-flyai",
     "url": "https://open.fly.ai/"
@@ -16,6 +16,18 @@
     "attractions",
     "fliggy",
     "booking",
-    "search"
+    "search",
+    "vacation",
+    "trip",
+    "itinerary",
+    "cruise",
+    "visa",
+    "car rental",
+    "concert",
+    "events",
+    "airfare",
+    "accommodation",
+    "resort",
+    "alibaba"
   ]
 }

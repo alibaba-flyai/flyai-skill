@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">✈️ FlyAI Skill</h1>
+  <h1 align="center">✈️ FlyAI — Travel, Flight & Hotel Search and Booking</h1>
   <p align="center">
     <strong>Travel search, powered by Fliggy — right inside Claude Code, OpenClaw, and other skill-compatible agents.</strong>
   </p>
@@ -42,17 +42,8 @@ npx skills add alibaba-flyai/flyai-skill
 
 **Claude Code:**
 
-Run the following commands inside Claude Code:
-
-```
-/plugin marketplace add alibaba-flyai/flyai-skill
-/plugin install flyai@alibaba-flyai-flyai-skill
-```
-
-Or copy the skill directory directly:
-
 ```bash
-cp -r /path/to/flyai-skill ~/.claude/skills/flyai
+cp -r /path/to/flyai-skill/skills/flyai ~/.claude/skills/flyai
 ```
 
 ### Step 2 — Install the CLI
