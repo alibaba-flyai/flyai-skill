@@ -1,35 +1,35 @@
 # search-flight ref
 
-## 机票搜索 (search-flight)
+## Flight Search (search-flight)
 
-### 参数说明
+### Parameters
 
-- **--origin** (必填): 出发地城市或机场
-- **--destination** (可选): 目的地城市或机场
-- **--dep-date** (可选): 明确出发日期（精确某一天，如 2026-03-15）
-- **--dep-date-start** / **--dep-date-end** (可选): 出发日期范围（如 2026-03-15 到 2026-03-20）
-- **--back-date** (可选): 明确返程日期（精确某一天，如 2026-03-20）
-- **--back-date-start** / **--back-date-end** (可选): 返程日期范围（如 2026-03-20 到 2026-03-25）
-- **--journey-type** (可选): 行程类型
-  - 取值：`1` = 直达，`2` = 中转
-- **--seat-class-name** (可选): 舱位名称
-- **--transport-no** (可选): 航班号
-- **--transfer-city** (可选): 中转城市
-- **--dep-hour-start** / **--dep-hour-end** (可选): 出发时段（小时）
-- **--arr-hour-start** / **--arr-hour-end** (可选): 到达时段（小时）
-- **--total-duration-hour** (可选): 总飞行时长（小时）
-- **--max-price** (可选): 最高价格
-- **--sort-type** (可选): 排序方式
-  - `1`：价格高 → 低
-  - `2`：推荐排序
-  - `3`：价格低 → 高
-  - `4`：耗时短 → 长
-  - `5`：耗时长 → 短
-  - `6`：出发早 → 晚
-  - `7`：出发晚 → 早
-  - `8`：直达优先
+- **--origin** (required): Departure city or airport
+- **--destination** (optional): Destination city or airport
+- **--dep-date** (optional): Departure date (`YYYY-MM-DD`)
+- **--dep-date-start** / **--dep-date-end** (optional): Departure date range
+- **--back-date** (optional): Return date
+- **--back-date-start** / **--back-date-end** (optional): Return date range
+- **--journey-type** (optional): Journey type
+  - `1` = direct, `2` = connecting
+- **--seat-class-name** (optional): Cabin class name
+- **--transport-no** (optional): Flight number
+- **--transfer-city** (optional): Transfer city
+- **--dep-hour-start** / **--dep-hour-end** (optional): Departure hour range (24h)
+- **--arr-hour-start** / **--arr-hour-end** (optional): Arrival hour range (24h)
+- **--total-duration-hour** (optional): Max total flight duration (hours)
+- **--max-price** (optional): Max price (CNY)
+- **--sort-type** (optional): Sort order
+  - `1`: price high → low
+  - `2`: recommended
+  - `3`: price low → high
+  - `4`: duration short → long
+  - `5`: duration long → short
+  - `6`: departure early → late
+  - `7`: departure late → early
+  - `8`: direct first
 
-### 调用示例
+### Examples
 
 ```bash
 flyai search-flight --origin "北京" --destination "上海" --dep-date 2026-03-15
@@ -39,49 +39,47 @@ flyai search-flight --origin "北京" --destination "上海" --dep-date-start 20
 flyai search-flight --origin "北京" --destination "上海" --dep-date-start 2026-03-15 --dep-date-end 2026-03-20 --back-date-start 2026-03-20 --back-date-end 2026-03-25
 ```
 
-### 输出示例
+### Output Example
 
 ```json
 {
   "data": {
     "itemList": [
       {
-        "adultPrice": "¥400.0", // 成人单价
-        "journeys": // 行程列表，每项为一条行程
-        [
+        "adultPrice": "¥400.0",
+        "journeys": [
             {
               "journeyType": "直达",
-                "segments": // 航段列表
-                [
+              "segments": [
                   {
-                    "depCityCode": "BJS", // 出发城市代码
-                    "depCityName": "北京", // 出发城市名
-                    "depStationCode": "PEK", // 出发场站代码
-                    "depStationName": "首都国际机场", // 出发场站名
-                    "depStationShortName": "首都", // 出发场站简称
-                    "depTerm": "T3", // 出发航站楼
-                    "depDateTime": "2026-03-28 21:00:00", // 出发日期时间
-                    "depWeekAbbrName": "周六", // 出发日星期缩写
-                    "arrCityCode": "SHA", // 到达城市代码
-                    "arrCityName": "上海", // 到达城市名
-                    "arrStationCode": "PVG", // 到达场站代码
-                    "arrStationName": "浦东国际机场", // 到达场站名
-                    "arrStationShortName": "浦东", // 到达场站简称
-                    "arrTerm": "T2", // 到达航站楼
-                    "arrDateTime": "2026-03-28 23:20:00", // 到达日期时间
-                    "arrWeekAbbrName": "周六", // 到达日星期缩写
-                    "duration": "140分钟", // 本段时长
-                    "transportType": "飞机", // 交通类型
-                    "marketingTransportName": "国航", // 承运人名称
-                    "marketingTransportNo": "CA1883", // 航班号
-                    "seatClassName": "经济舱" // 舱位名称
+                    "depCityCode": "BJS",
+                    "depCityName": "北京",
+                    "depStationCode": "PEK",
+                    "depStationName": "首都国际机场",
+                    "depStationShortName": "首都",
+                    "depTerm": "T3",
+                    "depDateTime": "2026-03-28 21:00:00",
+                    "depWeekAbbrName": "周六",
+                    "arrCityCode": "SHA",
+                    "arrCityName": "上海",
+                    "arrStationCode": "PVG",
+                    "arrStationName": "浦东国际机场",
+                    "arrStationShortName": "浦东",
+                    "arrTerm": "T2",
+                    "arrDateTime": "2026-03-28 23:20:00",
+                    "arrWeekAbbrName": "周六",
+                    "duration": "140分钟",
+                    "transportType": "飞机",
+                    "marketingTransportName": "国航",
+                    "marketingTransportNo": "CA1883",
+                    "seatClassName": "经济舱"
                   }
               ],
-              "totalDuration": "140分钟" // 该行程总时长
+              "totalDuration": "140分钟"
             }
         ],
-        "jumpUrl": "...", // 详情/下单跳转链接
-        "totalDuration": "140分钟" // 总时长
+        "jumpUrl": "...",
+        "totalDuration": "140分钟"
       }
     ]
   },

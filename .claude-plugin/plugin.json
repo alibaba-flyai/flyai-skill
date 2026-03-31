@@ -1,7 +1,7 @@
 {
   "name": "flyai",
   "description": "Travel search powered by Fliggy — search flights, hotels, attractions, concerts, and more with natural language",
-  "version": "1.0.11",
+  "version": "1.0.13",
   "author": {
     "name": "alibaba-flyai",
     "url": "https://open.fly.ai/"
@@ -9,6 +9,7 @@
   "homepage": "https://open.fly.ai/",
   "repository": "https://github.com/alibaba-flyai/flyai-skill",
   "license": "MIT",
+  "category": "travel",
   "keywords": [
     "travel",
     "flights",
@@ -28,6 +29,21 @@
     "airfare",
     "accommodation",
     "resort",
-    "alibaba"
+    "alibaba",
+    "travel planning",
+    "trip planner",
+    "flight comparison",
+    "hotel comparison",
+    "weekend getaway",
+    "honeymoon",
+    "business trip",
+    "family travel",
+    "机票",
+    "酒店",
+    "旅游",
+    "旅行",
+    "飞猪",
+    "景点",
+    "门票"
   ]
 }
