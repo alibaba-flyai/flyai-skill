@@ -108,7 +108,8 @@ flyai config set FLYAI_API_KEY "your-key"
      and suggest adjusting search criteria.
 4. **Be transparent** — when results appear incomplete or inconsistent
    with user expectations, present available results and let the user know
-   that results may vary. Suggest verifying through other channels
+   that results may not match the intended location or criteria. Suggest
+   verifying through other channels
    if accuracy is critical.
 
 ## References
