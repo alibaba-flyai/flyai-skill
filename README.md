@@ -500,6 +500,13 @@ FlyAI isn't just for flights and hotels. It spans the full travel lifecycle:
 | **Services** | Visas, travel insurance, SIM cards, WiFi rental |
 | **Trips** | Cruises, weekend getaways, honeymoons, family vacations, study tours |
 
+## Contact Us
+
+Scan the QR code below to join our DingTalk group for support and updates.
+
+<img width="508" height="484" alt="image" src="https://github.com/user-attachments/assets/0c7f15e6-1648-45a5-b383-d1101809a964" />
+
+
 ## License
 
 [MIT](LICENSE) — Copyright (c) 2026 alibaba-flyai
