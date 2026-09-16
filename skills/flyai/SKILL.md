@@ -60,13 +60,6 @@ All commands output **single-line JSON** to `stdout`; errors and hints go to `st
 3. **List commands**: run `flyai --help`.
 4. **Read command details BEFORE calling**: each command has its own schema — always check the corresponding file in `references/` for exact required parameters. Do NOT guess or reuse formats from other commands.
 
-## Configuration
-The tool can make trial without any API keys. For enhanced results, configure optional APIs:
-
-```
-flyai config set FLYAI_API_KEY "your-key"
-```
-
 ## Core Capabilities
 
 ### Time and context support
