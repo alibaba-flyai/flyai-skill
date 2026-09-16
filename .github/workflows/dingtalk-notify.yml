@@ -1,0 +1,105 @@
+name: DingTalk notify on new issues/PRs
+
+# Runs hourly. If any issue or PR was created in the last hour,
+# push a notification to the DingTalk robot.
+on:
+  schedule:
+    # At minute 0 of every hour (UTC). GitHub scheduled runs may be delayed a few minutes.
+    - cron: '0 * * * *'
+  workflow_dispatch:
+    inputs:
+      window_minutes:
+        description: 'Lookback window in minutes'
+        required: false
+        default: '60'
+
+permissions:
+  issues: read
+  pull-requests: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan new issues/PRs and push to DingTalk
+        uses: actions/github-script@v7
+        env:
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+          WINDOW_MINUTES: ${{ github.event.inputs.window_minutes || '60' }}
+        with:
+          script: |
+            const webhook = process.env.DINGTALK_WEBHOOK;
+            if (!webhook) {
+              core.setFailed('Missing DINGTALK_WEBHOOK secret. Add it under repo Settings -> Secrets and variables -> Actions.');
+              return;
+            }
+
+            const windowMinutes = parseInt(process.env.WINDOW_MINUTES || '60', 10);
+            const since = new Date(Date.now() - windowMinutes * 60 * 1000);
+            const sinceISO = since.toISOString();
+            const { owner, repo } = context.repo;
+
+            // issues.listForRepo filters by "since" (updated time) and returns issues + PRs.
+            // Then filter by created_at to keep only items newly created within the window.
+            const items = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: 'all',
+              since: sinceISO,
+              per_page: 100,
+            });
+
+            const fresh = items.filter(i => new Date(i.created_at) >= since);
+            const issues = fresh.filter(i => !i.pull_request);
+            const prs = fresh.filter(i => i.pull_request);
+
+            core.info(`Window ${windowMinutes} min: ${issues.length} new issue(s), ${prs.length} new PR(s)`);
+
+            if (issues.length === 0 && prs.length === 0) {
+              core.info('Nothing new, skipping push.');
+              return;
+            }
+
+            const lines = [];
+            lines.push(`## [SafetyAI] New GitHub activity - ${owner}/${repo}`);
+            lines.push(`Last ${windowMinutes} min: ${issues.length} issue(s), ${prs.length} PR(s)`);
+            if (issues.length) {
+              lines.push('', '### New issues');
+              for (const i of issues) {
+                lines.push(`- [#${i.number} ${i.title}](${i.html_url}) - @${i.user.login}`);
+              }
+            }
+            if (prs.length) {
+              lines.push('', '### New PRs');
+              for (const p of prs) {
+                lines.push(`- [#${p.number} ${p.title}](${p.html_url}) - @${p.user.login}`);
+              }
+            }
+            const text = lines.join('\n');
+
+            const body = {
+              msgtype: 'markdown',
+              markdown: {
+                title: `[SafetyAI] New issues/PRs - ${owner}/${repo}`,
+                text,
+              },
+            };
+
+            const res = await fetch(webhook, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(body),
+            });
+            const resText = await res.text();
+            core.info(`DingTalk response: ${res.status} ${resText}`);
+
+            let parsed;
+            try {
+              parsed = JSON.parse(resText);
+            } catch (e) {
+              core.setFailed(`Cannot parse DingTalk response: ${resText}`);
+              return;
+            }
+            if (parsed.errcode !== 0) {
+              core.setFailed(`DingTalk push failed: ${resText}`);
+            }
