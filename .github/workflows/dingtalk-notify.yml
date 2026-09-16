@@ -4,8 +4,9 @@ name: DingTalk notify on new issues/PRs
 # push a notification to the DingTalk robot.
 on:
   schedule:
-    # At minute 0 of every hour (UTC). GitHub scheduled runs may be delayed a few minutes.
-    - cron: '0 * * * *'
+    # At minute 17 of every hour (UTC). Avoid the top of the hour, which is the
+    # most congested slot for GitHub's scheduler and is more likely to be delayed/dropped.
+    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       window_minutes:
