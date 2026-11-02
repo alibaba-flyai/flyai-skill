@@ -1,18 +1,11 @@
-name: DingTalk notify on new issues/PRs
+name: DingTalk daily unanswered issues/PRs
 
-# Runs hourly. If any issue or PR was created in the last hour,
-# push a notification to the DingTalk robot.
+# Remind daily about all open issues/PRs without a reply from another person.
 on:
   schedule:
-    # At minute 17 of every hour (UTC). Avoid the top of the hour, which is the
-    # most congested slot for GitHub's scheduler and is more likely to be delayed/dropped.
-    - cron: '17 * * * *'
+    # 09:17 Asia/Shanghai (01:17 UTC). GitHub may delay scheduled runs.
+    - cron: '17 1 * * *'
   workflow_dispatch:
-    inputs:
-      window_minutes:
-        description: 'Lookback window in minutes'
-        required: false
-        default: '60'
 
 permissions:
   issues: read
@@ -22,11 +15,10 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Scan new issues/PRs and push to DingTalk
+      - name: Scan open unanswered issues/PRs and push to DingTalk
         uses: actions/github-script@v7
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
-          WINDOW_MINUTES: ${{ github.event.inputs.window_minutes || '60' }}
         with:
           script: |
             const webhook = process.env.DINGTALK_WEBHOOK;
@@ -35,43 +27,65 @@ jobs:
               return;
             }
 
-            const windowMinutes = parseInt(process.env.WINDOW_MINUTES || '60', 10);
-            const since = new Date(Date.now() - windowMinutes * 60 * 1000);
-            const sinceISO = since.toISOString();
             const { owner, repo } = context.repo;
 
-            // issues.listForRepo filters by "since" (updated time) and returns issues + PRs.
-            // Then filter by created_at to keep only items newly created within the window.
+            // Scan all open items, regardless of age, so delayed runs cannot create gaps.
             const items = await github.paginate(github.rest.issues.listForRepo, {
               owner,
               repo,
-              state: 'all',
-              since: sinceISO,
+              state: 'open',
               per_page: 100,
             });
 
-            const fresh = items.filter(i => new Date(i.created_at) >= since);
-            const issues = fresh.filter(i => !i.pull_request);
-            const prs = fresh.filter(i => i.pull_request);
+            const unanswered = [];
+            for (const item of items) {
+              // Author follow-ups and automated comments do not count as a human reply.
+              const isReply = entry => entry.user &&
+                entry.user.id !== item.user.id &&
+                entry.user.type !== 'Bot' &&
+                Boolean(entry.body?.trim());
+              const params = { owner, repo, per_page: 100 };
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                ...params, issue_number: item.number,
+              });
+              if (comments.some(isReply)) continue;
+              if (item.pull_request) {
+                const reviews = await github.paginate(github.rest.pulls.listReviews, {
+                  ...params, pull_number: item.number,
+                });
+                // Submitted approvals/change requests count even without a review body.
+                const reviewed = reviews.some(review => review.user &&
+                  review.user.id !== item.user.id && review.user.type !== 'Bot' &&
+                  ['APPROVED', 'CHANGES_REQUESTED', 'COMMENTED'].includes(review.state));
+                if (reviewed) continue;
+                const reviewComments = await github.paginate(github.rest.pulls.listReviewComments, {
+                  ...params, pull_number: item.number,
+                });
+                if (reviewComments.some(isReply)) continue;
+              }
+              unanswered.push(item);
+            }
+            const issues = unanswered.filter(i => !i.pull_request);
+            const prs = unanswered.filter(i => i.pull_request);
 
-            core.info(`Window ${windowMinutes} min: ${issues.length} new issue(s), ${prs.length} new PR(s)`);
+            core.info(`Open unanswered: ${issues.length} issue(s), ${prs.length} PR(s)`);
 
             if (issues.length === 0 && prs.length === 0) {
-              core.info('Nothing new, skipping push.');
+              core.info('No open unanswered items, skipping push.');
               return;
             }
 
             const lines = [];
-            lines.push(`## [SafetyAI] New GitHub activity - ${owner}/${repo}`);
-            lines.push(`Last ${windowMinutes} min: ${issues.length} issue(s), ${prs.length} PR(s)`);
+            lines.push(`## [SafetyAI] Open unanswered GitHub items - ${owner}/${repo}`);
+            lines.push(`${issues.length} issue(s), ${prs.length} PR(s) awaiting a reply`);
             if (issues.length) {
-              lines.push('', '### New issues');
+              lines.push('', '### Unanswered issues');
               for (const i of issues) {
                 lines.push(`- [#${i.number} ${i.title}](${i.html_url}) - @${i.user.login}`);
               }
             }
             if (prs.length) {
-              lines.push('', '### New PRs');
+              lines.push('', '### Unanswered PRs');
               for (const p of prs) {
                 lines.push(`- [#${p.number} ${p.title}](${p.html_url}) - @${p.user.login}`);
               }
@@ -81,7 +95,7 @@ jobs:
             const body = {
               msgtype: 'markdown',
               markdown: {
-                title: `[SafetyAI] New issues/PRs - ${owner}/${repo}`,
+                title: `[SafetyAI] Unanswered issues/PRs - ${owner}/${repo}`,
                 text,
               },
             };
@@ -101,6 +115,6 @@ jobs:
               core.setFailed(`Cannot parse DingTalk response: ${resText}`);
               return;
             }
-            if (parsed.errcode !== 0) {
+            if (!res.ok || parsed.errcode !== 0) {
               core.setFailed(`DingTalk push failed: ${resText}`);
             }
