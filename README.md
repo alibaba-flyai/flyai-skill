@@ -8,9 +8,13 @@
     No browser tabs. No app switching. Just ask.
   </p>
   <p align="center">
+    <a href="README.md">English</a> | <a href="README.zh-CN.md">中文</a>
+  </p>
+  <p align="center">
     <a href="https://www.npmjs.com/package/@fly-ai/flyai-cli"><img src="https://img.shields.io/npm/v/@fly-ai/flyai-cli?label=flyai-cli&color=blue" alt="npm version"></a>
     <a href="https://www.npmjs.com/package/@fly-ai/flyai-cli"><img src="https://img.shields.io/npm/dw/@fly-ai/flyai-cli?label=npm%20downloads&color=blue" alt="npm downloads"></a>
-    <a href="https://clawhub.ai/alibaba-flyai/flyai-skill"><img src="https://img.shields.io/badge/clawhub-available-purple" alt="ClawHub"></a>
+    <a href="https://www.skills.sh/alibaba-flyai/flyai-skill/flyai"><img src="https://skills.sh/b/alibaba-flyai/flyai-skill" alt="Skills installs"></a>
+    <a href="https://clawhub.ai/yealexchen/skills/flyai"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fclawhub.ai%2Fapi%2Fv1%2Fskills%2Fflyai&amp;query=%24.skill.stats.downloads&amp;label=ClawHub%20downloads&amp;color=purple" alt="ClawHub downloads"></a>
     <a href="https://github.com/alibaba-flyai/flyai-skill/stargazers"><img src="https://img.shields.io/github/stars/alibaba-flyai/flyai-skill?style=social" alt="GitHub Stars"></a>
     <a href="https://github.com/alibaba-flyai/flyai-skill/forks"><img src="https://img.shields.io/github/forks/alibaba-flyai/flyai-skill?style=social" alt="GitHub Forks"></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"></a>
@@ -21,7 +25,8 @@
     <a href="#quick-start">Quick Start</a> ·
     <a href="#commands">Commands</a> ·
     <a href="#featured-use-cases">Use Cases</a> ·
-    <a href="#examples">Examples</a>
+    <a href="#examples">Examples</a> ·
+    <a href="#contact-us">Contact Us</a>
   </p>
 </p>
 
