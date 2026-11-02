@@ -5,10 +5,8 @@
 ### Parameters
 
 - **--dest-name** (required): Destination — must be a country, province, city, or district
-- **--key-words** (optional): Search keywords
+- **--key-words** (optional): Search keywords, including Marriott brands or hotel names
 - **--poi-name** (optional): Nearby attraction name, used to filter by surrounding POI
-- **--hotel-brands** (optional): Marriott hotel brands, comma-separated
-- **--hotel-name** (optional): Exact or fuzzy hotel name
 - **--hotel-bed-types** (optional): Bed type, comma-separated
   - Values: `大床房` (king), `双床房` (twin), `多床房` (multi)
 - **--max-price** (optional): Max price per night (CNY)
@@ -20,8 +18,8 @@
 ### Examples
 
 ```bash
-flyai search-marriott-hotel --dest-name "上海" --hotel-brands "万豪酒店,喜来登" --check-in-date 2026-03-20 --check-out-date 2026-03-22
-flyai search-marriott-hotel --dest-name "杭州" --hotel-name "杭州JW万豪酒店" --sort price_asc --max-price 1200
+flyai search-marriott-hotel --dest-name "上海" --key-words "万豪酒店" --check-in-date 2026-03-20 --check-out-date 2026-03-22
+flyai search-marriott-hotel --dest-name "杭州" --key-words "杭州JW万豪酒店" --sort price_asc --max-price 1200
 ```
 
 ### Output Example

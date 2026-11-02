@@ -316,12 +316,12 @@ flyai search-poi --city-name "Hangzhou" --keyword "West Lake" --category "山湖
 
 ### `search-marriott-hotel` — Marriott Hotel Search
 
-Search Marriott Group hotels by destination with filters for brand, bed type, price, and nearby POIs.
+Search Marriott Group hotels by destination, using keywords for brands or hotel names and filters for bed type, price, and nearby POIs.
 
 **OpenClaw / Claude Code:**
 
 ```
-/flyai search-marriott-hotel --dest-name "Shanghai" --hotel-brands "JW Marriott,Sheraton" --check-in-date 2026-04-10 --check-out-date 2026-04-12
+/flyai search-marriott-hotel --dest-name "Shanghai" --key-words "JW Marriott" --check-in-date 2026-04-10 --check-out-date 2026-04-12
 ```
 
 **CLI:**
@@ -329,7 +329,7 @@ Search Marriott Group hotels by destination with filters for brand, bed type, pr
 ```bash
 # Marriott hotels in Shanghai
 flyai search-marriott-hotel \
-  --dest-name "Shanghai" --hotel-brands "JW Marriott,Sheraton" \
+  --dest-name "Shanghai" --key-words "JW Marriott" \
   --check-in-date 2026-04-10 --check-out-date 2026-04-12
 
 # Marriott hotels in Hangzhou under ¥1200, sorted by price
@@ -343,10 +343,8 @@ flyai search-marriott-hotel \
 | Flag | Description |
 |------|-------------|
 | `--dest-name` | Destination (country/province/city/district) **(required)** |
-| `--key-words` | Search keywords |
+| `--key-words` | Search keywords, including Marriott brands or hotel names |
 | `--poi-name` | Nearby attraction name |
-| `--hotel-brands` | Marriott brands, comma-separated |
-| `--hotel-name` | Exact or fuzzy hotel name |
 | `--hotel-bed-types` | `大床房` (king) · `双床房` (twin) · `多床房` (multi) |
 | `--max-price` | Max price per night (CNY) |
 | `--sort` | `distance_asc` · `rate_desc` · `price_asc` · `price_desc` · `no_rank` |
