@@ -489,6 +489,7 @@ You see rich results ←── Agent formats markdown ←── JSON response �
 
 - **Runtime**: Node.js
 - **Output**: Single-line JSON to `stdout`, errors/hints to `stderr`
+- **Response status and hints**: Check the JSON `status` for the business result. Trial responses may include platform or API key setup guidance in `systemMessage`; this field can also be `null` and does not by itself indicate a failed search. Agents display non-empty platform hints at the end of the response.
 - **Context isolation**: Each command runs in its own execution context
 - **Pattern matching**: Intent-based activation at priority 90 — the agent automatically routes travel queries to FlyAI
 

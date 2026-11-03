@@ -31,6 +31,10 @@ flyai keyword-search --query "Hong Kong SIM card"
 
 ### Output Example
 
+Each result is wrapped in `data.itemList[].info`. `info.price` can be `null` or a masked string such as `"1xx"`, so it is not a guaranteed numeric quote. Do not interpret missing or masked prices as zero or infer an exact amount.
+
+For structured flight or hotel pricing, use `search-flight` or `search-hotel` and check the returned price. Use the result's `jumpUrl` to check the current booking price.
+
 ```json
 {
     "data": {
@@ -39,7 +43,7 @@ flyai keyword-search --query "Hong Kong SIM card"
           "info": {
               "jumpUrl": "...",
               "picUrl": "...",
-              "price": "...",
+              "price": "1xx",
               "scoreDesc": "",
               "star": "...",
               "tags": ["..."],
