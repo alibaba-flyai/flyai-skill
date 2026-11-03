@@ -8,6 +8,7 @@
   - Supported dimensions: province, city, brand, hotel name, selling point
 - **--sort-type** (optional): Sort order
   - Values: `price_asc`, `price_desc`
+  - This command uses string values, unlike the numeric `1`–`8` values used by `search-flight` and `search-train`. Sort values are specific to each command.
 
 ### Examples
 

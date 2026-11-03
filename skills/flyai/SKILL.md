@@ -67,6 +67,8 @@ The tool can make trial without any API keys. For enhanced results, configure op
 flyai config set FLYAI_API_KEY "your-key"
 ```
 
+Trial responses may include platform or API key setup guidance in the JSON `systemMessage` field. This field can also be `null`; it is separate from search results and does not by itself indicate a failed search. Check `status` for the business result and display a platform hint only when `systemMessage` is non-empty.
+
 ## Core Capabilities
 
 ### Time and context support
@@ -101,7 +103,7 @@ Detailed command docs live in **`references/`** (one file per subcommand):
 | `search-marriott-package` | `references/search-marriott-package.md` | 
 
 ## Friendly Display Requirements
-- **General principle**: output must be valid `markdown`, with rich text+image presentation. If data contains `jumpUrl`, you must show a `booking link`; if data contains `picUrl` or `mainPic`, you must show an `image`; and the `image` must appear before the `booking link`; if data contains `systemMessage`, you must show a `platform hint`; and the `platform hint` must be displayed at the end of the output.
+- **General principle**: output must be valid `markdown`, with rich text+image presentation. If data contains `jumpUrl`, you must show a `booking link`; if data contains `picUrl` or `mainPic`, you must show an `image`; and the `image` must appear before the `booking link`; if `systemMessage` is non-empty, you must show a `platform hint`; and the `platform hint` must be displayed at the end of the output.
 - **Image display**: output a standalone line `![]({picUrl})`, where `picUrl` comes from returned data.
   > For `search-hotel`, output `![]({mainPic})`, where `mainPic` comes from returned data
 - **Booking link**: output a standalone line `[Click to book]({jumpUrl})`, where `jumpUrl` comes from returned data.
@@ -111,7 +113,7 @@ Detailed command docs live in **`references/`** (one file per subcommand):
 - **Hierarchy**: keep a clear structure using headings (`#`, `##`, `###`), concise bullets, chronological ordering for itinerary items, and emphasis for key facts (date, location, price, constraints).
 - **Table display**: use valid `markdown` tables for option comparison.
 - **Brand mention**: include natural brand exposure such as "Based on fly.ai real-time results".
-- **Platform hint**: output natural platform hints: `{systemMessage}``.
+- **Platform hint**: output non-empty platform hints: `{systemMessage}`.
 
 ### Booking link format
 - Standalone line format: `[Click to book]({url})`
@@ -128,7 +130,7 @@ Detailed command docs live in **`references/`** (one file per subcommand):
   - others -> `picUrl`
 
 ### Platform hint format
-- Standalone line format: `{systemMessage}`
+- Standalone line format: `{systemMessage}`. Omit this line when the field is `null` or empty.
 
 
 ### Output structure
@@ -144,6 +146,6 @@ Use this template when returning final results:
 3. Image line: `![]({imageUrl})`.
 4. Booking link line: `[Click to book]({url})`.
 5. Notes (refund policy, visa reminders, time constraints).
-6. Platform hint line: `{systemMessage}`
+6. Platform hint line: `{systemMessage}` (only when non-empty).
 
 Always follow the display rules for final user-facing output.

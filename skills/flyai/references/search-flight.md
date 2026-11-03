@@ -39,12 +39,16 @@ flyai search-flight --origin "北京" --destination "上海" --dep-date 2026-03-
 
 ### Output Example
 
+Read the fare from `data.itemList[].ticketPrice` (CNY), not `adultPrice`. The API can return a decimal string such as `"540.00"`; do not assume it is a JSON number or includes a currency symbol.
+
+Flight numbers are in `data.itemList[].journeys[].segments[].marketingTransportNo`. Read all journeys and segments for return or connecting flights.
+
 ```json
 {
   "data": {
     "itemList": [
       {
-        "adultPrice": "¥400.0",
+        "ticketPrice": "400.00",
         "journeys": [
             {
               "journeyType": "直达",
